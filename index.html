@@ -70,7 +70,7 @@ var experiment = Array(16);
 for (i=1; i<=16; i++) experiment[i] = [];
 data.forEach(function(row) {
 			hour = row[0];
-			for (i=1; i<=16; i++) experiment[i][hour] = parseFloat(row[i]);
+			for (var i=1; i<=16; i++) experiment[i][hour] = parseFloat(row[i]);
 			});
 //console.log(experiment);
 
@@ -90,12 +90,10 @@ var svg = d3.select("body").append("svg")
 //
 // Create X axis
 //
-var x = d3.scale.linear().range([0, width]);
+var x = d3.scale.linear().range([0, width]).domain([0, 24]);
 var xAxis = d3.svg.axis()
 	.scale(x)
 	.orient("bottom");
-var maxX = 24;
-//x.domain(maxX);
 
 svg.append("g")
 	.attr("class", "x axis")
@@ -103,38 +101,50 @@ svg.append("g")
 	.call(xAxis)
 	.append("text")
 		.text("Time (h)")
-		.attr("transform", "translate(" + (width-60) + ", 15)");
+		.attr("transform", "translate(" + (width-60) + ", 18)");
 //
 // Create Y axis
 //
-var y = d3.scale.linear().range([height, 0]);
+/*var maxYs = [];
+for (var i=0; i<experiment.length; i++) maxYs[i] = d3.max(experiment[i]);
+var maxY = d3.max(maxYs);*/
+var y = d3.scale.linear().range([height, 0]).domain([0, 0.2]);
 var yAxis = d3.svg.axis()
 	.scale(y)
 	.orient("left");
-var maxY = 0.2; // d3.extent(experiment, function(e) { return d3.extent(e, function(f) {return f.values ...}); });
-//y.domain(maxY);
 
 svg.append("g")
 	.attr("class", "y axis")
 	.call(yAxis)
 	.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("y", -40)
+		.attr("y", -45)
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.text("Protein concentration (a.u.)");
 
 //
 // Draw a line
+// http://www.janwillemtulp.com/2011/04/01/tutorial-line-chart-in-d3/
 //
-var line = d3.svg.line()
-	.x(function(d) { return x(1); })
-	.y(function(d) { return y(experiment[1]); });
 
+var line = function(data) {
+	result = "M"+x(0)+","+y(data[0]);
+	for (var i=1; i<=24; i++) {
+		if (typeof(data[i]) != typeof(undefined)) {
+			result += "L"+x(i)+","+y(data[i]);
+			}
+		}
+	console.log(result);
+	return result
+	}
+/*var line = d3.svg.line()
+	.x(function(d,i) { return x(i); })
+	.y(function(d,i) { return y(d); });*/
 svg.append("path")
+	.attr("id", "experiment1")
 	.attr("class", "line")
-	.datum(experiment[1])
-	.attr("d", line);
+	.attr("d", line(experiment[1]));
 </script>
 </body>
 
