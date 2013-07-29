@@ -19,3 +19,12 @@ body {
 .line:hover {
 	stroke-width: 3px;
 	}
+
+.rect {
+	fill: blue;
+	cursor: pointer;
+}
+
+.rect:hover {
+	fill: red;
+}
