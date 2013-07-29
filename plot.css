@@ -12,12 +12,15 @@ body {
 .line {
 	fill: none;
 	stroke: steelblue;
-	stroke-width: 1.5px;
+	stroke-width: 2px;
+	stroke-dasharray: 5, 1;
 	cursor: pointer;
+	opacity: 0.5;
 	}
 
 .line:hover {
-	stroke-width: 3px;
+	stroke-width: 6px;
+	opacity: 1;
 	}
 
 .rect {
