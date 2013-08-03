@@ -101,6 +101,7 @@ LineChart = function() {
     Chart.plotArray = function(data) {
         this.SVG.append("path")
     //        .attr("id", "concentration"+index)
+            .attr("id", "line")
             .attr("class", "line")
             .attr("d", this.arrayToPath(data));
     
@@ -113,7 +114,7 @@ LineChart = function() {
                     .attr("width", "6")
                     .attr("height", "6");
         };
-
+        
     //
     // Draw a line for one column of our data table
     //
@@ -127,6 +128,13 @@ LineChart = function() {
     Chart.plotAllColumns = function() {
         for (var i=1; i<=16; i++)
             this.plotColumn(i);
+    };
+
+    //
+    // Delete the latest plot line from SVG 
+    //
+    Chart.clearPlot = function() {
+        delete this.SVG.getElementById("line");
     };
 
     return Chart;
