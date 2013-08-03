@@ -36,7 +36,7 @@ LineChart = function() {
     //
     // Create Scalable Vector Graphic
     //
-    Chart.createSVG = function(w, h) {
+    Chart.createSVG = function(w, h, xDomain, yDomain, xLabel, yLabel) {
         //
         // Insert SVG below HTML BODY
         //
@@ -52,7 +52,7 @@ LineChart = function() {
         //
         // Create X axis
         //
-        this.x = d3.scale.linear().range([0, width]).domain([0, 24]);
+        this.x = d3.scale.linear().range([0, width]).domain(xDomain);
         var xAxis = d3.svg.axis()
             .scale(this.x)
             .orient("bottom");
@@ -61,13 +61,13 @@ LineChart = function() {
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
             .append("text")
-                .text("Time (h)")
+                .text(xLabel)
                 .attr("transform", "translate(" + (width-60) + ", 18)");
 
         //
         // Create Y axis
         //
-        this.y = d3.scale.linear().range([height, 0]).domain([0, 0.5]);
+        this.y = d3.scale.linear().range([height, 0]).domain(yDomain);
         var yAxis = d3.svg.axis()
             .scale(this.y)
             .orient("left");
@@ -79,7 +79,7 @@ LineChart = function() {
                 .attr("y", -45)
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
-                .text("Protein concentration (a.u.)");
+                .text(yLabel);
     };
 
     //
@@ -115,11 +115,18 @@ LineChart = function() {
         };
 
     //
+    // Draw a line for one column of our data table
+    //
+    Chart.plotColumn = function(column){
+        this.plotArray(this.inputDataTable[column]);
+    };
+        
+    //
     // Draw all experiments
     //
-    Chart.plotAllDataColumns = function() {
+    Chart.plotAllColumns = function() {
         for (var i=1; i<=16; i++)
-            this.plotArray(this.inputDataTable[i]);
+            this.plotColumn(i);
     };
 
     return Chart;

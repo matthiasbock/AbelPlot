@@ -42,14 +42,19 @@ Hours	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16
 
 <table id=menu>
 <tr>
-<td><input type=radio name=first checked></td>
-<td><input type=radio name=second></td>
-<td>Experiment 1</td>
+<th>Experiment</th>
+<th>1</th>
+<th>2</th>
 </tr>
 <tr>
-<td><input type=radio name=first></td>
-<td><input type=radio name=second checked></td>
-<td>Experiment 2</td>
+<td>Left</td>
+<td><input type=radio name=left checked></td>
+<td><input type=radio name=left></td>
+</tr>
+<tr>
+<td>Right</td>
+<td><input type=radio name=right></td>
+<td><input type=radio name=right checked></td>
 </tr>
 </table>
 
@@ -57,28 +62,28 @@ Hours	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16
 //
 // Use Line Chart library to create a chart for the protein concentrations
 //
-w = 480;
-h = 200;
+var width = 480;
+var height = 200;
 
 chart1 = LineChart();
+chart1.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein concentration (a.u.)");
 chart1.importTSV("concentration");
-chart1.createSVG(w, h);
-chart1.plotAllDataColumns();
+chart1.plotColumn(1);
 
 chart2 = LineChart();
-chart2.importTSV("phosphorylation");
-chart2.createSVG(w, h);
-chart2.plotAllDataColumns();
+chart2.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein concentration (a.u.)");
+chart2.importTSV("concentration");
+chart2.plotColumn(2);
 
 chart3 = LineChart();
-chart3.importTSV("concentration");
-chart3.createSVG(w, h);
-chart3.plotAllDataColumns();
+chart3.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein phosphorylation (a.u.)");
+chart3.importTSV("phosphorylation");
+chart3.plotColumn(1);
 
 chart4 = LineChart();
+chart4.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein phosphorylation (a.u.)");
 chart4.importTSV("phosphorylation");
-chart4.createSVG(w, h);
-chart4.plotAllDataColumns();
+chart4.plotColumn(2);
 </script>
 </body>
 
