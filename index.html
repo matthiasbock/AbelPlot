@@ -57,10 +57,28 @@ Hours	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16
 //
 // Use Line Chart library to create a chart for the protein concentrations
 //
+w = 480;
+h = 200;
+
 chart1 = LineChart();
 chart1.importTSV("concentration");
-chart1.createSVG();
+chart1.createSVG(w, h);
 chart1.plotAllDataColumns();
+
+chart2 = LineChart();
+chart2.importTSV("phosphorylation");
+chart2.createSVG(w, h);
+chart2.plotAllDataColumns();
+
+chart3 = LineChart();
+chart3.importTSV("concentration");
+chart3.createSVG(w, h);
+chart3.plotAllDataColumns();
+
+chart4 = LineChart();
+chart4.importTSV("phosphorylation");
+chart4.createSVG(w, h);
+chart4.plotAllDataColumns();
 </script>
 </body>
 

@@ -36,13 +36,13 @@ LineChart = function() {
     //
     // Create Scalable Vector Graphic
     //
-    Chart.createSVG = function() {
+    Chart.createSVG = function(w, h) {
         //
         // Insert SVG below HTML BODY
         //
         var margin = {top: 20, right: 20, bottom: 30, left: 50};
-        var width = 960 - margin.left - margin.right;
-        var height = 500 - margin.top - margin.bottom;
+        var width = w - margin.left - margin.right;
+        var height = h - margin.top - margin.bottom;
         this.SVG = d3.select("body").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
