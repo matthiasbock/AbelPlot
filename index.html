@@ -59,24 +59,26 @@ createMenu('#menu');
 var width = 480;
 var height = 200;
 
-chart1 = LineChart();
+chart1 = LineChart('#plot');
 chart1.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein concentration (a.u.)");
-chart1.importTSV("concentration");
+chart1.importTSV('#concentration');
 chart1.plotColumn(1);
 
-chart2 = LineChart();
+chart2 = LineChart('#plot');
 chart2.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein concentration (a.u.)");
-chart2.importTSV("concentration");
+chart2.importTSV('#concentration');
 chart2.plotColumn(2);
 
-chart3 = LineChart();
+$('#plot').append('<br/>');
+
+chart3 = LineChart('#plot');
 chart3.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein phosphorylation (a.u.)");
-chart3.importTSV("phosphorylation");
+chart3.importTSV('#phosphorylation');
 chart3.plotColumn(1);
 
-chart4 = LineChart();
+chart4 = LineChart('#plot');
 chart4.createSVG(width, height, [0, 24], [0, 0.5], "Time (h)", "Protein phosphorylation (a.u.)");
-chart4.importTSV("phosphorylation");
+chart4.importTSV('#phosphorylation');
 chart4.plotColumn(2);
 </script>
 

@@ -1,7 +1,18 @@
 
-LineChart = function() {
+/*
+ * Create a Line Chart object below HTML element parent
+ * 
+ * Example usage:
+ * chart = LineChart('#body');
+ * chart.createSVG(800, 600, [1, 24], [0, 10], 'Hour', 'Intensity');
+ * chart.importTSV('#datablock').plotColumn(1);
+ * 
+ */
+
+LineChart = function(parent) {
     
     var Chart = {};
+    Chart.parent = parent;
     
     //
     // Import data:
@@ -9,7 +20,7 @@ LineChart = function() {
     //
     Chart.importTSV = function(elementID) {
         // the raw text from the specified script element is parsed as tab-separated value table
-        var input = document.getElementById(elementID).innerHTML.trim();
+        var input = $(elementID).html().trim();
         var tsv = d3.tsv.parseRows(input);
         //var header = tsv[0];
         var data = tsv.slice(1);
@@ -31,6 +42,8 @@ LineChart = function() {
                     my.inputDataTable[i][hour] = parseFloat(row[i]);
             }
         );
+
+        return self;
     };
 
     //
@@ -43,7 +56,7 @@ LineChart = function() {
         var margin = {top: 20, right: 20, bottom: 30, left: 50};
         var width = w - margin.left - margin.right;
         var height = h - margin.top - margin.bottom;
-        this.SVG = d3.select("#plot").append("svg")
+        this.SVG = d3.select(this.parent).append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -80,6 +93,8 @@ LineChart = function() {
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
                 .text(yLabel);
+        
+        return this.SVG;
     };
 
     //
