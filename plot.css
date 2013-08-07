@@ -27,8 +27,7 @@ input[type="radio"] {
 .line {
 	fill: none;
 	stroke: steelblue;
-	stroke-width: 2px;
-	stroke-dasharray: 5, 1;
+	stroke-width: 4px;
 	cursor: pointer;
 	opacity: 0.5;
 	}
@@ -40,7 +39,9 @@ input[type="radio"] {
 
 .rect {
 	fill: blue;
-	cursor: pointer;
+	stroke: transparent;
+	stroke-width: 15px;
+	cursor: crosshair;
 }
 
 .rect:hover {

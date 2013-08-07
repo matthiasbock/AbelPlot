@@ -109,10 +109,10 @@ LineChart = function() {
             if (typeof(data[i]) != typeof(undefined))
                 this.SVG.append("rect")
                     .attr("class", "rect")
-                    .attr("x", this.x(i)-3)
-                    .attr("y", this.y(data[i])-3)
-                    .attr("width", "6")
-                    .attr("height", "6");
+                    .attr("x", this.x(i)-4)
+                    .attr("y", this.y(data[i])-4)
+                    .attr("width", "8")
+                    .attr("height", "8");
         };
         
     //
