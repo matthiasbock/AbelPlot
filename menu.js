@@ -1,24 +1,40 @@
 /*
  * Create experiment chooser
+ * with one radio button per experiment and
+ * two rows, one for the left and one for the right plot
  */
 
-createMenu = function() {
+createMenu = function(table) {
     var header = $('<tr>');
     header.append($('<th>').append('Experiment'));
     for (var i=1; i<=16; i++)
         header.append($('<th>').append(i));
 
+    /*
+     * <td><input type=radio name=radioLeft id=radioLeft16 onclick="clickRadio(event);" onmousewheel="wheelRadio(event);"></td>
+     * <td><input type=radio name=radioRight id=radioRight16 onclick="clickRadio(event);" onmousewheel="wheelRadio(event);"></td>
+     */
+
     var left = $('<tr>');
     left.append($('<td>').append('Left'));
-    for (var i=1; i<=16; i++)
-        left.append($('<td>').append(i));
+    for (var i=1; i<=16; i++) {
+        var input = $('<input>').attr('type', 'radio').attr('name', 'radioLeft').attr('id', 'radioLeft'+("0"+i).slice(-2));
+        input.bind('click', clickRadio);
+        input.bind('mousewheel', wheelRadio);
+        left.append($('<td>').append(input));
+    }
 
     var right = $('<tr>');
     right.append($('<td>').append('Right'));
-    for (var i=1; i<=16; i++)
-        right.append($('<td>').append(i));
+    for (var i=1; i<=16; i++) {
+        var input = $('<input>').attr('type', 'radio').attr('name', 'radioRight').attr('id', 'radioRight'+("0"+i).slice(-2));
+        input.bind('click', clickRadio);
+        input.bind('mousewheel', wheelRadio);
+        right.append($('<td>').append(input));
+    }
 
-    $('menu').append(header).append(left).append(right);
+    $(table).append(header).append(left).append(right);
+    checkRadios();
 };
 
 /*
@@ -50,8 +66,8 @@ clickRadio = function(event) {
  */
 var checkRadios = function() {
     for (var i=1; i<=16; i++) {
-        document.getElementById("radioLeft"+i).checked = (i==experimentLeft);
-        document.getElementById("radioRight"+i).checked = (i==experimentRight);
+        document.getElementById("radioLeft"+("0"+i).slice(-2)).checked = (i==experimentLeft);
+        document.getElementById("radioRight"+("0"+i).slice(-2)).checked = (i==experimentRight);
     }
 };
 
