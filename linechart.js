@@ -43,7 +43,7 @@ LineChart = function() {
         var margin = {top: 20, right: 20, bottom: 30, left: 50};
         var width = w - margin.left - margin.right;
         var height = h - margin.top - margin.bottom;
-        this.SVG = d3.select("body").append("svg")
+        this.SVG = d3.select("#plot").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
