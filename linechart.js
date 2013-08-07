@@ -134,7 +134,7 @@ LineChart = function() {
     // Delete the latest plot line from SVG 
     //
     Chart.clearPlot = function() {
-        delete this.SVG.getElementById("line");
+        // delete this.SVG.documentElement.getElementById("line");
     };
 
     return Chart;

@@ -1,6 +1,15 @@
 body {
 	font: 10px sans-serif;
+	background-color: #eee;
 	}
+
+table {
+	border: 1px dashed gray;
+}
+
+input[type="radio"] {
+	cursor: pointer;
+}
 
 .axis path,
 .axis line {
