@@ -40,8 +40,11 @@ LineChart = function(parent) {
         data.forEach(
             function(row) {
                 hour = row[0];
-                for (var i=1; i<=16; i++)
-                    my.inputDataTable[i][hour] = parseFloat(row[i]);
+                for (var i=1; i<=16; i++) {
+                    var f = parseFloat(row[i]);
+                    if (!isNaN(f))
+                        my.inputDataTable[i][hour] = f;
+                    }
             }
         );
 
@@ -106,7 +109,7 @@ LineChart = function(parent) {
     Chart.arrayToPath = function(data) {
         result = "M"+this.x(0)+","+this.y(data[0]);
         for (var i=1; i<=24; i++)
-            if (typeof(data[i]) != typeof(undefined) && data[i].length > 0)
+            if (typeof(data[i]) != typeof(undefined))
                 result += "L"+this.x(i)+","+this.y(data[i]);
         //    console.log(result);
         return result;
@@ -115,28 +118,31 @@ LineChart = function(parent) {
     //
     // Draw a line into the chart
     //
-    Chart.plotArray = function(data) {
+    Chart.plotArray = function(data, index) {
         this.SVG.append("path")
     //        .attr("id", "concentration"+index)
-            .attr("id", "line")
+            .attr("id", "path"+index)
             .attr("class", "line")
             .attr("d", this.arrayToPath(data));
-    
-        for (var i=1; i<=24; i++)
-            if (typeof(data[i]) != typeof(undefined) && data[i].length > 0)
+        
+        var width = 8;
+        var height = 8;
+        for (var i=0; i<=24; i++)
+            if (typeof(data[i]) != typeof(undefined))
                 this.SVG.append("rect")
+                    .attr("id", "rect"+index+'_'+i)
                     .attr("class", "rect")
-                    .attr("x", this.x(i)-4)
-                    .attr("y", this.y(data[i])-4)
-                    .attr("width", "8")
-                    .attr("height", "8");
+                    .attr("x", this.x(i)-(width/2))
+                    .attr("y", this.y(data[i])-(height/2))
+                    .attr("width", width)
+                    .attr("height", height);
         };
         
     //
     // Draw a line for one column of our data table
     //
     Chart.plotColumn = function(column){
-        this.plotArray(this.inputDataTable[column]);
+        this.plotArray(this.inputDataTable[column], column);
     };
         
     //
