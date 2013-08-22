@@ -65,6 +65,10 @@ input[type="checkbox"] {
     cursor: pointer;
 }
 
+#randomizeButton {
+    font-size: 9;
+}
+
 .axis path,
 .axis line {
     fill: none;

@@ -4,6 +4,21 @@
  * two rows, one for the left and one for the right plot
  */
 
+randomizeColorPickers = function() {
+    var get_random_color = function() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.round(Math.random() * 15)];
+        }
+        return color;
+    };
+    for (var i=1; i<=16; i++) {
+        var c = get_random_color();
+        $('#colorPicker'+("0"+i).slice(-2)).attr('value', c).attr('color', c).css('background-color', c);
+    }
+};
+
 selectAllLeft = function(event) {
     for (var i=1; i<=16; i++) {
         var id = "checkboxLeft"+("0"+i).slice(-2);
@@ -62,6 +77,11 @@ createMenu = function(table, takeStrainTitlesFrom) {
         $(table).append(tr);
     }
     
+    var randomButton = $('<input>')
+                        .attr('id', 'randomizeButton')
+                        .attr('type', 'button')
+                        .attr('value', 'random')
+                        .bind('click', randomizeColorPickers);
     var input1 = $('<input>')
                     .attr('type', 'checkbox')
                     .attr('id', 'checkboxSelectAllLeft')
@@ -71,7 +91,7 @@ createMenu = function(table, takeStrainTitlesFrom) {
                     .attr('id', 'checkboxSelectAllRight')
                     .bind('change', selectAllRight);
     var tr = $('<tr>')
-                .append($('<td>'))
+                .append($('<td>').append(randomButton))
                 .append($('<td>').attr('class', 'title').append('all'))
                 .append($('<td>').append(input1))
                 .append($('<td>').append(input2));
