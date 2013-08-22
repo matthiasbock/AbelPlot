@@ -7,16 +7,16 @@
 selectAllLeft = function(event) {
     for (var i=1; i<=16; i++) {
         var id = "checkboxLeft"+("0"+i).slice(-2);
-        //document.getElementById(id).checked = event.target.checked;
         $('#'+id).trigger('click');
+        document.getElementById(id).checked = event.target.checked;
     }
 };
 
 selectAllRight = function(event) {
     for (var i=1; i<=16; i++) {
         var id = "checkboxRight"+("0"+i).slice(-2);
-        //document.getElementById(id).checked = event.target.checked;
         $('#'+id).trigger('click');
+        document.getElementById(id).checked = event.target.checked;
     }
 };
 
