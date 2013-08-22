@@ -106,7 +106,7 @@ LineChart = function(parent) {
     Chart.arrayToPath = function(data) {
         result = "M"+this.x(0)+","+this.y(data[0]);
         for (var i=1; i<=24; i++)
-            if (typeof(data[i]) != typeof(undefined))
+            if (typeof(data[i]) != typeof(undefined) && data[i].length > 0)
                 result += "L"+this.x(i)+","+this.y(data[i]);
         //    console.log(result);
         return result;
@@ -123,7 +123,7 @@ LineChart = function(parent) {
             .attr("d", this.arrayToPath(data));
     
         for (var i=1; i<=24; i++)
-            if (typeof(data[i]) != typeof(undefined))
+            if (typeof(data[i]) != typeof(undefined) && data[i].length > 0)
                 this.SVG.append("rect")
                     .attr("class", "rect")
                     .attr("x", this.x(i)-4)

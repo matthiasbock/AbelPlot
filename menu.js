@@ -12,13 +12,14 @@ createMenu = function(table, takeStrainTitlesFrom) {
     header.append($('<th>').append('Phosphorylation'));
     $(table).append(header);
     
-    console.log($(takeStrainTitlesFrom).html().split('\n')[0]);
+    // extract column titles from tsv data in #takeStrainTitlesFrom
+    var titles = $(takeStrainTitlesFrom).html().split('\n')[1].split('\t');
     
     for (var i=1; i<=16; i++) {
         var tr = $('<tr>').attr('class', 'hover');
 
         tr.append($('<td>').append($('<input>').attr('class','color {pickerPosition:"right"}')));
-        tr.append($('<td>').attr('class', 'title').append('Strain #'+i));
+        tr.append($('<td>').attr('class', 'title').append(titles[i]));
         
         var input = $('<input>').attr('type', 'checkbox').attr('name', 'radioLeft').attr('id', 'radioLeft'+("0"+i).slice(-2));
         input.bind('click', clickRadio);
