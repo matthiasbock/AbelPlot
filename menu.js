@@ -32,7 +32,10 @@ createMenu = function(table, takeStrainTitlesFrom) {
     var titles = $(takeStrainTitlesFrom).html().split('\n')[1].split('\t');
     
     for (var i=1; i<=16; i++) {
-        var tr = $('<tr>').attr('class', 'hover');
+        var tr = $('<tr>')
+                    .attr('experiment', ("0"+i).slice(-2))
+                    .attr('class', 'hover')
+                    .bind('mouseover', tableHover);
         
         var picker = $('<input>')
                         .attr('id', 'colorPicker'+("0"+i).slice(-2))
@@ -112,3 +115,14 @@ changeColor = function(event) {
     console.log(id);
     $('.path'+plotNr).css('stroke', event.target.value);
 };
+
+/*
+ * Mouse is moved over the table:
+ * Highlight the plot lines which correspond to the hovered table row
+ */
+tableHover = function(event) {
+    var plotNr = $(event.target).parent('.hover').attr('experiment');
+    $('.path').css('stroke-width', '2px');
+    $('.path'+plotNr).css('stroke-width', '4px');
+};
+
