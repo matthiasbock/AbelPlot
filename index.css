@@ -16,6 +16,14 @@ h1 {
     vertical-align: top;
 }
 
+.color {
+    font-size: 12px;
+    font-family: monospace;
+    width: 50px;
+    color: transparent;
+    cursor: pointer;
+}
+
 #plot {
     border: 1px dotted gray;
     margin: 1px;
@@ -45,14 +53,11 @@ tr.hover:hover {
 td {
     border: none;
     margin: none;
+    text-align:center;
 }
 
 td.title {
     text-align: left;
-}
-
-td.checkbox {
-    text-align:center;
 }
 
 input[type="checkbox"] {

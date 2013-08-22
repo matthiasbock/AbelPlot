@@ -6,6 +6,7 @@
 
 createMenu = function(table, takeStrainTitlesFrom) {
     var header = $('<tr>');
+    header.append($('<th>').append('Plot color'));
     header.append($('<th>').append('Strain'));
     header.append($('<th>').append('Concentration'));
     header.append($('<th>').append('Phosphorylation'));
@@ -16,6 +17,7 @@ createMenu = function(table, takeStrainTitlesFrom) {
     for (var i=1; i<=16; i++) {
         var tr = $('<tr>').attr('class', 'hover');
 
+        tr.append($('<td>').append($('<input>').attr('class','color {pickerPosition:"right"}')));
         tr.append($('<td>').attr('class', 'title').append('Strain #'+i));
         
         var input = $('<input>').attr('type', 'checkbox').attr('name', 'radioLeft').attr('id', 'radioLeft'+("0"+i).slice(-2));
