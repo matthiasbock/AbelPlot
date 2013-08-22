@@ -1,0 +1,91 @@
+body {
+    font: 10px sans-serif;
+    background-color: #eee;
+    }
+
+h1 {
+    font-size: 24;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+#menuContainer, #plotContainer {
+    border: none;
+    display: inline-block;
+    margin: 10px;
+    vertical-align: top;
+}
+
+#plot {
+    border: 1px dotted gray;
+    margin: 1px;
+    padding: 10px;
+}
+
+#plot:hover {
+    border: 2px dotted gray;
+    margin: 0px;
+	}
+
+table {
+    padding: 10px;
+    border: 1px dotted gray;
+    margin: 1px;
+}
+
+table:hover {
+    border: 2px dotted gray;
+    margin: 0px;
+}
+
+tr.hover:hover {
+    background-color: orange;
+}
+
+td {
+    border: none;
+    margin: none;
+}
+
+td.title {
+    text-align: left;
+}
+
+td.checkbox {
+    text-align:center;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+    }
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 4px;
+    cursor: pointer;
+    opacity: 0.5;
+    }
+
+.line:hover {
+    stroke-width: 6px;
+    opacity: 1;
+    }
+
+.rect {
+    fill: blue;
+    stroke: transparent;
+    stroke-width: 15px;
+    cursor: crosshair;
+}
+
+.rect:hover {
+    fill: red;
+}

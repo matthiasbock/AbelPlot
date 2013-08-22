@@ -2,6 +2,8 @@
 /*
  * Create a Line Chart object below HTML element parent
  * 
+ * by Matthias Bock <mail@matthiasbock.net>
+ * 
  * Example usage:
  * chart = LineChart('#body');
  * chart.createSVG(800, 600, [1, 24], [0, 10], 'Hour', 'Intensity');
@@ -75,7 +77,7 @@ LineChart = function(parent) {
             .call(xAxis)
             .append("text")
                 .text(xLabel)
-                .attr("transform", "translate(" + (width-60) + ", 18)");
+                .attr("transform", "translate(" + (width-30) + ", 28)");
 
         //
         // Create Y axis

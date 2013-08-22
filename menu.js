@@ -4,36 +4,33 @@
  * two rows, one for the left and one for the right plot
  */
 
-createMenu = function(table) {
+createMenu = function(table, takeStrainTitlesFrom) {
     var header = $('<tr>');
-    header.append($('<th>').append('Experiment'));
-    for (var i=1; i<=16; i++)
-        header.append($('<th>').append(i));
-
-    /*
-     * <td><input type=radio name=radioLeft id=radioLeft16 onclick="clickRadio(event);" onmousewheel="wheelRadio(event);"></td>
-     * <td><input type=radio name=radioRight id=radioRight16 onclick="clickRadio(event);" onmousewheel="wheelRadio(event);"></td>
-     */
-
-    var left = $('<tr>');
-    left.append($('<td>').append('Left'));
+    header.append($('<th>').append('Strain'));
+    header.append($('<th>').append('Concentration'));
+    header.append($('<th>').append('Phosphorylation'));
+    $(table).append(header);
+    
+    console.log($(takeStrainTitlesFrom).html().split('\n')[0]);
+    
     for (var i=1; i<=16; i++) {
-        var input = $('<input>').attr('type', 'radio').attr('name', 'radioLeft').attr('id', 'radioLeft'+("0"+i).slice(-2));
+        var tr = $('<tr>').attr('class', 'hover');
+
+        tr.append($('<td>').attr('class', 'title').append('Strain #'+i));
+        
+        var input = $('<input>').attr('type', 'checkbox').attr('name', 'radioLeft').attr('id', 'radioLeft'+("0"+i).slice(-2));
         input.bind('click', clickRadio);
         input.bind('mousewheel', wheelRadio);
-        left.append($('<td>').append(input));
-    }
+        tr.append($('<td>').attr('class', 'checkbox').append(input));
 
-    var right = $('<tr>');
-    right.append($('<td>').append('Right'));
-    for (var i=1; i<=16; i++) {
-        var input = $('<input>').attr('type', 'radio').attr('name', 'radioRight').attr('id', 'radioRight'+("0"+i).slice(-2));
+        var input = $('<input>').attr('type', 'checkbox').attr('name', 'radioRight').attr('id', 'radioRight'+("0"+i).slice(-2));
         input.bind('click', clickRadio);
         input.bind('mousewheel', wheelRadio);
-        right.append($('<td>').append(input));
+        tr.append($('<td>').attr('class', 'checkbox').append(input));
+        
+        $(table).append(tr);
     }
 
-    $(table).append(header).append(left).append(right);
     checkRadios();
 };
 
