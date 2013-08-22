@@ -119,38 +119,47 @@ LineChart = function(parent) {
     // Draw a line into the chart
     //
     Chart.plotArray = function(data, index) {
-        this.SVG.append("path")
-    //        .attr("id", "concentration"+index)
+        // group lines and rectangles to toggle visibility
+        var g = this.SVG.append("g").attr('id', 'plot'+("0"+index).slice(-2)).attr('style', 'visibility:hidden');
+        
+        // line
+        g.append("path")
             .attr("id", "path"+index)
             .attr("class", "line")
             .attr("d", this.arrayToPath(data));
         
+        // put small rectangles on the line at the data points
         var width = 8;
         var height = 8;
         for (var i=0; i<=24; i++)
             if (typeof(data[i]) != typeof(undefined))
-                this.SVG.append("rect")
+                g.append("rect")
                     .attr("id", "rect"+index+'_'+i)
                     .attr("class", "rect")
                     .attr("x", this.x(i)-(width/2))
                     .attr("y", this.y(data[i])-(height/2))
                     .attr("width", width)
-                    .attr("height", height);
+                    .attr("height", height)
+                    .attr("tooltip", data[i]);
+        
+        return g;
         };
         
     //
     // Draw a line for one column of our data table
     //
     Chart.plotColumn = function(column){
-        this.plotArray(this.inputDataTable[column], column);
+        return this.plotArray(this.inputDataTable[column], column);
     };
         
     //
     // Draw all experiments
     //
     Chart.plotAllColumns = function() {
+        this.plot = [];
         for (var i=1; i<=16; i++)
-            this.plotColumn(i);
+            this.plot[i] = this.plotColumn(i);
+        return this.plot;
     };
 
     //
