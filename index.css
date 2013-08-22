@@ -59,7 +59,7 @@ input[type="checkbox"] {
     shape-rendering: crispEdges;
     }
 
-.line {
+.path {
     fill: none;
     stroke: steelblue;
     stroke-width: 4px;

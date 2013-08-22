@@ -18,7 +18,11 @@ createMenu = function(table, takeStrainTitlesFrom) {
     for (var i=1; i<=16; i++) {
         var tr = $('<tr>').attr('class', 'hover');
         
-        tr.append($('<td>').append($('<input>').attr('class','color {pickerPosition:"right"}')));
+        var picker = $('<input>')
+                        .attr('id', 'colorPicker'+("0"+i).slice(-2))
+                        .attr('class','color {pickerPosition:"right",hash:"true"}')
+                        .bind('change', changeColor);
+        tr.append($('<td>').append(picker));
         tr.append($('<td>').attr('class', 'title').append(titles[i]));
         
         var input = $('<input>')
@@ -66,3 +70,13 @@ checkCheckboxs = function() {
         document.getElementById("checkboxRight"+("0"+i).slice(-2)).checked = (i==experimentRight);
     }
 };
+
+/*
+ * Set plot color via color picker
+ */
+changeColor = function(event) {
+    var id = event.target.id;
+    var plotNr = id.substring(id.length-2);
+    console.log(id);
+    $('.path'+plotNr).css('stroke', event.target.value);
+}

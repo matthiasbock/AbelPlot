@@ -124,8 +124,7 @@ LineChart = function(parent) {
         
         // line
         g.append("path")
-            .attr("id", "path"+index)
-            .attr("class", "line")
+            .attr("class", "path path"+("0"+index).slice(-2))
             .attr("d", this.arrayToPath(data));
         
         // put small rectangles on the line at the data points
@@ -134,8 +133,7 @@ LineChart = function(parent) {
         for (var i=0; i<=24; i++)
             if (typeof(data[i]) != typeof(undefined))
                 g.append("rect")
-                    .attr("id", "rect"+index+'_'+i)
-                    .attr("class", "rect")
+                    .attr("class", "rect "+"rect"+("0"+index).slice(-2))
                     .attr("x", this.x(i)-(width/2))
                     .attr("y", this.y(data[i])-(height/2))
                     .attr("width", width)
