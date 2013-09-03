@@ -4,7 +4,7 @@
  * two rows, one for the left and one for the right plot
  */
 
-randomizeColorPickers = function() {
+randomizeColors = function() {
     var get_random_color = function() {
         var letters = '0123456789ABCDEF'.split('');
         var color = '#';
@@ -37,19 +37,23 @@ selectAllRight = function(event) {
     }
 };
 
-createMenu = function(table, takeStrainTitlesFrom) {
+createMenu = function(parent, takeStrainTitlesFrom) {
+    
+    table = $('<table id=menu>');
+    $(parent).append(table);
+    
     var header = $('<tr>')
             .append($('<th>').append('Strain'))
             .append($('<th>').append('Plot color'))
             .append($('<th>').append('Concentration'))
             .append($('<th>').append('Phosphorylation'));
-    $(table).append(header);
+    table.append(header);
 
     var randomButton = $('<input>')
                         .attr('id', 'randomizeButton')
                         .attr('type', 'button')
                         .attr('value', 'random')
-                        .bind('click', randomizeColorPickers);
+                        .bind('click', randomizeColors);
     var input1 = $('<input>')
                     .attr('type', 'checkbox')
                     .attr('id', 'checkboxSelectAllLeft')
@@ -63,7 +67,7 @@ createMenu = function(table, takeStrainTitlesFrom) {
                 .append($('<td>').append(randomButton))
                 .append($('<td>').append(input1))
                 .append($('<td>').append(input2));
-    $(table).append(tr);
+    table.append(tr);
 
     // extract column titles from tsv data in #takeStrainTitlesFrom
     var titles = $(takeStrainTitlesFrom).html().split('\n')[1].split('\t');
@@ -97,7 +101,7 @@ createMenu = function(table, takeStrainTitlesFrom) {
             .bind('click', clickCheckbox);
         tr.append($('<td>').attr('class', 'checkbox').append(input));
         
-        $(table).append(tr);
+        table.append(tr);
     }
     
     checkCheckboxs();

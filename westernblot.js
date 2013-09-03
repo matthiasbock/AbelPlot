@@ -4,17 +4,14 @@
  */
 WesternBlot = function(parent, id, src, lanes) {
     
-    var container = $('<div id="'+id+'" class="container">');
-    $(parent).append(container);
-
     var wb = {
-            container: container,
+            parent: $(parent),
             id: id,
             src: src,
             lanes: lanes
     };
     
-    wb.container.append( $('<img src="'+src+'">') );
+    wb.parent.append( $('<img src="'+src+'">') );
     
     return wb;
 };
