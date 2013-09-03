@@ -45,13 +45,13 @@ Hours	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16
 <script src="jQuery.js"></script>
 <script src="d3.js"></script>
 <script src="linechart.js"></script>
+<script src="westernblot.js"></script>
 <script src="menu.js"></script>
 <script type="text/javascript" src="jscolor/jscolor.js"></script>
 <link rel="stylesheet" type="text/css" href="index.css"/>
 </head>
 
-<body>
-<center>
+<body id=body>
 
 <h1>Protein amount and activity in different strains</h1>
 
@@ -85,14 +85,9 @@ chart2.plotAllColumns();
 </script>
 </div>
 
-<div id=wbContainer class=container>
-<img src="700.jpg">
-</div>
-
-<br/>
-<br/>
-<br/>
-<br/>
+<script>
+var wb = WesternBlot('#body', 'wbContainer', '700.jpg', []);
+</script>
 
 </body>
 
