@@ -58,7 +58,7 @@ td {
 }
 
 td.title {
-    text-align: left;
+    text-align: center;
 }
 
 input[type="checkbox"] {
@@ -67,6 +67,7 @@ input[type="checkbox"] {
 
 #randomizeButton {
     font-size: 9;
+    width: 55px;
 }
 
 .axis path,
